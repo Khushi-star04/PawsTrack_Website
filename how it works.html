@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Pawstrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #6B8E23, #1B4D3E, #D2B48C);
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite;
+            color: #1A3C2A;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .btn {
+            background-color: #ffffff;
+            color: #2e7d32;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0f7e0;
+            transform: scale(1.05);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            padding: 15px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        nav img:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e0f7e0;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(165, 201, 161, 0.85);
+            color: #1A3C2A;
+            border-bottom: 4px solid #4CAF50;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            color: #2E7D32;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-section p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .steps-container {
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            background: linear-gradient(to bottom, #3C4F2F, #1B4D3E);
+        }
+
+        .step-card {
+            background: rgba(224, 247, 224, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.3), transparent);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .step-card:hover::before {
+            transform: scale(1.2);
+        }
+
+        .step-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #4CAF50;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .step-card h2 {
+            font-size: 1.8em;
+            color: #2E7D32;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .step-card p {
+            font-size: 1.1em;
+            color: #1A3C2A;
+            z-index: 1;
+            position: relative;
+        }
+
+        .step-card .learn-more {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #1B4D3E;
+            color: #F5F5F5;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .step-card .learn-more:hover {
+            background: #4CAF50;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background: #1B4D3E;
+            color: #F5F5F5;
+            text-align: center;
+            padding: 20px;
+            font-size: 1em;
+        }
+
+        .floating-circles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .circle {
+            position: absolute;
+            background: rgba(76, 175, 80, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-25vh) scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2em;
+            }
+            .step-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-circles" id="circles"></div>
+    <nav class="navbar">
+        <img src="PAWSTrACK logo.png" alt="Pawstrack Logo">
+        <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="feature.html">Features</a>
+      <a href="about.html">About</a>
+      <a href="login.html"><button class="btn">Get Started</button></a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <h1>How Pawstrack Works</h1>
+        <p>Discover how our cutting-edge IoT devices and AI analytics revolutionize livestock health monitoring in real-time.</p>
+    </section>
+
+    <div class="steps-container">
+        <div class="step-card">
+            <img src="cow_with_gps_collar.jpg" alt="Wearable Device Icon">
+            <h2>Step 1: Wearable Devices</h2>
+            <p>Advanced sensors on collars, ear tags, or harnesses track temperature, heart rate, and movement for comprehensive monitoring.</p>
+            <a href="#" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="step-card">
+            <img src="ai.webp" alt="Cloud Processing Icon">
+            <h2>Step 2: Cloud Processing</h2>
+            <p>Data is securely transmitted to the cloud, stored with top-tier encryption, and prepped for in-depth analysis.</p>
+            <a href="#" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="step-card">
+            <img src="artificial-intelligence.png" alt="AI Icon">
+            <h2>Step 3: AI Analysis</h2>
+            <p>Our AI algorithms detect early signs of illness or stress, providing precise insights from real-time data.</p>
+            <a href="#" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="step-card">
+            <img src="msg icon.png" alt="Notification Icon">
+            <h2>Step 4: Real-Time Alerts</h2>
+            <p>Get instant notifications and actionable insights on your dashboard to act swiftly and protect your livestock.</p>
+            <a href="#" class="learn-more">Learn More</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Pawstrack. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            const circlesContainer = document.getElementById('circles');
+            for (let i = 0; i < 25; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                circle.style.width = `${Math.random() * 70 + 20}px`;
+                circle.style.height = circle.style.width;
+                circle.style.left = `${Math.random() * 100}vw`;
+                circle.style.top = `${Math.random() * 100}vh`;
+                circle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                circle.style.animationDelay = `${Math.random() * 3}s`;
+                circlesContainer.appendChild(circle);
+            }
+        });
+    </script>
+</body>
+</html>

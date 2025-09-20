@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livestock Health Monitoring Features</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: linear-gradient(45deg, #dcedc8, #a5c9a1, #3c4f2f);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            color: #1a3c2a; /* Dark green for contrast */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            padding: 15px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        nav img:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e0f7e0;
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #2e7d32;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0f7e0;
+            transform: scale(1.05);
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 0 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            color: #1a3c2a;
+            margin: 0;
+            text-transform: uppercase;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .features-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .features-section h2 {
+            font-size: 2.5em;
+            color: #1a3c2a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: #e0f7e0;
+            padding: 20px;
+            border-left: 5px solid #4caf50;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card h3 {
+            color: #1a3c2a;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #2e7d32;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .map-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-size: 2.5em;
+            color: #1a3c2a;
+            margin-bottom: 20px;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .data-insights-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .data-insights-section h2 {
+            font-size: 2.5em;
+            color: #1a3c2a;
+            margin-bottom: 20px;
+        }
+
+        #myChart {
+            max-width: 1000px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1b4d3e;
+            color: #ffffff;
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .features-section {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .map-section {
+                padding: 15px;
+                margin: 20px;
+            }
+
+            .map-iframe {
+                height: 300px;
+            }
+
+            .data-insights-section {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            #myChart {
+                height: 300px;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 10px 20px;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="PAWSTrACK logo.png" alt="Pawstrack Logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="how it works.html">How its work </a>
+      <a href="login.html"><button class="btn">Get Started</button></a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Livestock Health Monitoring Features</h1>
+    </header>
+
+    <section class="features-section">
+        <h2>Key Features of Wearable Devices</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>1. Real-Time Health Tracking</h3>
+                <p>Continuously monitors vital signs like body temperature, heart rate, and respiration using collars or ear tags, enabling instant detection of anomalies for prompt intervention.</p>
+            </div>
+            <div class="feature-card">
+                <h3>2. Activity and Behavior Monitoring</h3>
+                <p>Tracks movement, eating, rumination, and lying times with sensors, identifying changes that signal stress, illness, or estrus for better management.</p>
+            </div>
+            <div class="feature-card">
+                <h3>3. Early Disease Detection</h3>
+                <p>Uses AI algorithms to analyze sensor data, detecting early signs of diseases like lumpy skin disease, allowing timely treatment to prevent outbreaks.</p>
+            </div>
+            <div class="feature-card">
+                <h3>4. GPS and Geo-Fencing</h3>
+                <p>Provides real-time location tracking and virtual boundaries, alerting farmers if livestock stray, enhancing security and pasture management.</p>
+            </div>
+            <div class="feature-card">
+                <h3>5. Reproductive Cycle Monitoring</h3>
+                <p>Detects heat cycles or calving events through activity and temperature changes, improving breeding efficiency with precise timing for insemination.</p>
+            </div>
+            <div class="feature-card">
+                <h3>6. Environmental Monitoring</h3>
+                <p>Measures ambient temperature, humidity, and air quality, offering insights into environmental stressors affecting livestock health.</p>
+            </div>
+            <div class="feature-card">
+                <h3>7. Alert Notifications</h3>
+                <p>Sends text or app notifications about health issues, location breaches, or reproductive events, ensuring rapid response from farmers or veterinarians.</p>
+            </div>
+            <div class="feature-card">
+                <h3>8. Data Analytics and Predictive Insights</h3>
+                <p>Employs AI and machine learning to predict health issues or optimize feeding and management based on historical and individual animal data.</p>
+            </div>
+            <div class="feature-card">
+                <h3>9. Non-Invasive and Sustainable Design</h3>
+                <p>Features non-invasive attachments (e.g., collars) and sustainable power options like solar panels or rechargeable batteries for low maintenance.</p>
+            </div>
+            <div class="feature-card">
+                <h3>10. Individual and Herd Management</h3>
+                <p>Provides data on individual animals (e.g., weight, milk composition) and herd trends (e.g., digestion patterns), supporting personalized care and farm efficiency.</p>
+            </div>
+            <div class="feature-card">
+                <h3>11. Remote Veterinary Consultation</h3>
+                <p>Enables real-time data sharing with veterinarians via cloud connectivity, allowing remote diagnosis and advice based on wearable sensor data, reducing the need for on-site visits.</p>
+            </div>
+            <div class="feature-card">
+                <h3>12. Stress Level Assessment</h3>
+                <p>Monitors physiological indicators (e.g., cortisol levels or heart rate variability) to assess stress, helping farmers improve living conditions and reduce animal distress.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2>Our Location</h2>
+        <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835234543102!2d-122.41941568439832!3d37.77492907975907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco!5e0!3m2!1sen!2sus!4v1632056789012!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <section class="data-insights-section">
+        <h2>Data Insights</h2>
+        <canvas id="myChart"></canvas>
+    </section>
+
+    <footer>
+        <p>© 2025 Pawstrack. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Line Chart Configuration
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+                datasets: [{
+                    label: 'Average Heart Rate (bpm)',
+                    data: [70, 72, 68, 75, 80, 78, 82],
+                    borderColor: '#4caf50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Heart Rate (bpm)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Days'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#1a3c2a'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

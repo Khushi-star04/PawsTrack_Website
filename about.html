@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Pawstrack</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: linear-gradient(45deg,#a5c9a1, #3c4f2f);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            color: #f5f5f5; /* Light text for contrast on dark background */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            padding: 15px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        nav img:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e0f7e0;
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #2e7d32;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0f7e0;
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 4em;
+            text-transform: uppercase;
+            color: #e0f7e0;
+            text-align: center;
+            padding: 20px 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .about-section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent for depth */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 3px solid #4caf50;
+            transition: transform 0.3s ease;
+        }
+
+        .about-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-section h2 {
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #e0f7e0;
+        }
+
+        .about-section .animal-images {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .about-section img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid #4caf50;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .about-section img:hover {
+            transform: scale(1.1);
+        }
+
+        .about-section p {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            color: #f5f5f5;
+        }
+
+        .about-section ol {
+            font-size: 1.2em;
+            padding-left: 25px;
+            color: #f5f5f5;
+        }
+
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 60px 30px;
+            background: linear-gradient(to bottom, #3c4f2f, #1b4d3e);
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-left: 6px solid #4caf50;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card h2 {
+            color: #e0f7e0;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .feature-card p {
+            font-size: 1.1em;
+            color: #f5f5f5;
+        }
+
+        .key-benefits {
+            padding: 60px 30px;
+            background: linear-gradient(to bottom, #4caf50, #2e7d32);
+            text-align: center;
+        }
+
+        .key-benefits h2 {
+            color: #e0f7e0;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .benefits-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            max-width: 320px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card ul {
+            text-align: left;
+            padding-left: 20px;
+            color: #f5f5f5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1b4d3e;
+            color: #ffffff;
+            font-size: 1.1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 30px;
+                margin: 30px;
+            }
+
+            .about-section h2 {
+                font-size: 2.2em;
+            }
+
+            .about-section img {
+                width: 120px;
+                height: 120px;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 10px 20px;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="PAWSTrACK logo.png" alt="Pawstrack Logo">
+        <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="feature.html">Features</a>
+      <a href="how it works.html">How its work </a>
+      <a href="login.html"><button class="btn">Get Started</button></a>
+        </div>
+    </nav>
+
+    <section class="about-section">
+        <header>
+            <h1>About Pawstrack</h1>
+        </header>
+        <div class="animal-images">
+            <img src="cute-cow-head.webp" alt="Cute Calf">
+            <img src="cute-rhino.webp" alt="Cute Goat">
+        </div>
+        <p>Pawstrack is an advanced livestock health monitoring system that leverages AI, IoT, and wearable technology to provide real-time health tracking, disease detection, and predictive analytics for livestock. Based in the heart of rural innovation, we collaborate with veterinarians, farmers, and tech pioneers to ensure Pawstrack meets real-world needs. Let's work together to keep your livestock thriving! Founded by a team of tech enthusiasts and agricultural experts, we’re passionate about improving livestock welfare with years of experience in IoT and animal science.</p>
+
+        <h2>Why Pawstrack?</h2>
+        <p>Traditional livestock monitoring relies on manual observation—time-consuming and often too late to catch diseases early. Pawstrack offers a smarter, automated solution, empowering farmers and veterinarians with data-driven decisions.</p>
+    </section>
+
+    <section class="key-benefits">
+        <h2>Key Benefits</h2>
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <ul>
+                    <li>Real-Time Monitoring: Continuous tracking of animal health and activity.</li>
+                    <li>Early Disease Detection: AI-based analysis spots issues before they worsen.</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <ul>
+                    <li>Improved Productivity: Optimize farm operations with data insights.</li>
+                    <li>Cost-Effective: Cut veterinary costs and prevent livestock loss.</li>
+                    <li>Animal Welfare: Keep animals healthy and stress-free.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="feature-card">
+            <h2>Our Mission</h2>
+            <p>We believe companies delay growth by ignoring technologies like IoT. Our mission is to drive innovation and competitiveness across industries with end-to-end product development services.</p>
+        </div>
+        <div class="feature-card" style="background-color: #1b4d3e; color: white;">
+            <h2>Our Vision</h2>
+            <p>We aim to bridge science, technology, and people—unlocking opportunities and transforming how we interact with the world through groundbreaking projects that inspire curiosity.</p>
+        </div>
+        <div class="feature-card">
+            <h2>Core Team</h2>
+            <ol>
+                <li>Kashish Kumari - Developer / Data Analytic </li>
+                <li>Khushi Soni - Data Analytics / Developer</li>
+                <li>Kartik</li>
+                <li>Khushi Bali</li>
+            </ol>
+            <a href="index.html" style="color: #e0f7e0; font-weight: bold;">Go Back to Home</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Pawstrack. All rights reserved.</p>
+    </footer>
+</body>
+</html>
